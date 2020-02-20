@@ -97,7 +97,7 @@
               class="margin-right no-margin-bot"
             >
               <div class="flex-column">
-                <img :src="weather2Prev.weather[0].main === 'Clear' ? imgClear : weather2Prev.weather[0].main === 'Rain' ? imgRain : weather2Prev.weather[0].main === 'Snow' ? imgSnow : imgClouds"/>
+                <img :src=" weather2Prev.weather[0].main === 'Clear' ? imgClear : weather2Prev.weather[0].main === 'Rain' ? imgRain : weather2Prev.weather[0].main === 'Snow' ? imgSnow : imgClouds "/>
                 <div class="text-center text-white font-xs">{{ weather2Prev.main.temp.toFixed(0) }}°</div>
                 <!--Rain-->
                 <div
@@ -161,10 +161,10 @@ export default {
   name: "Meteo",
   data: function() {
     return {
-      imgClouds: '/img/clouds.f55d08f4.png',
-      imgClear: '/img/clear.eb6904a3.png',
-      imgRain: 'img/rain.06e6cc33.png',
-      imgSnow: 'imag/snow.4ed61220.png',
+      imgClouds: require('../assets/clouds.png'),
+      imgClear: require('../assets/clear.png'),
+      imgRain: require('../assets/rain.png'),
+      imgSnow: require('../assets/snow.png'),
       clou: false,
       apiKey: "2991540a50e60f697b3519f525aa1037",
       urlBase: "https://api.openweathermap.org/data/2.5/",
