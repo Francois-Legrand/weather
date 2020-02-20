@@ -97,7 +97,7 @@
               class="margin-right no-margin-bot"
             >
               <div class="flex-column">
-                <img :src=" 'https://openweathermap.org/img/wn/' + weather2Prev.weather[0].icon + '.png'"/>
+                <img :src="weather2Prev.weather[0].main === 'Clear' ? imgClear : weather2Prev.weather[0].main === 'Rain' ? imgRain : weather2Prev.weather[0].main === 'Snow' ? imgSnow : imgClouds"/>
                 <div class="text-center text-white font-xs">{{ weather2Prev.main.temp.toFixed(0) }}°</div>
                 <!--Rain-->
                 <div
@@ -155,13 +155,16 @@
 </template>
 
 <script>
-import axios from "axios";
 import { formatRelative } from "date-fns";
 import { fr } from "date-fns/locale";
 export default {
   name: "Meteo",
   data: function() {
     return {
+      imgClouds: '/img/clouds.f55d08f4.png',
+      imgClear: '/img/clear.eb6904a3.png',
+      imgRain: 'img/rain.06e6cc33.png',
+      imgSnow: 'imag/snow.4ed61220.png',
       clou: false,
       apiKey: "2991540a50e60f697b3519f525aa1037",
       urlBase: "https://api.openweathermap.org/data/2.5/",
@@ -216,11 +219,7 @@ export default {
     }
   },
   created() {
-    axios
-      .get(
-        "https://api.openweathermap.org/data/2.5/forecast?q=Lens,3003093&units=metric&APPID=62ca4d47cef5a36196f8d74f12c1ae13"
-      )
-      .then(response => (this.infosjour = response.data));
+    
   }
 };
 </script>
@@ -337,7 +336,10 @@ h1,
 h2 {
   text-align: center;
 }
-
+img{
+  width: 70px;
+  margin: auto;
+}
 .container {
   display: flex;
   flex-direction: column;
